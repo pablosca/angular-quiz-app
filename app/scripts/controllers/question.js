@@ -9,7 +9,8 @@
  */
 angular.module('quizApp')
   .controller('QuestionCtrl', function ($scope) {
-    $scope.questions = [{
+  	// questions (this will come from an external json)
+    var questions = [{
 		'content': '¿Cómo se define un módulo en angular?',
 		'answers': [
 			'angular.module("nombreModulo", [])',
@@ -37,21 +38,31 @@ angular.module('quizApp')
 		'correctAnswer': 1
 	}];
 
-	// var questionIndexes = _.range($scope.questions.length -1),
-	$scope.indexes = _.range($scope.questions.length);
-	$scope.currentIndex = _.sample($scope.indexes);
+	// put all the indexes of the questions array in a separated array
+	var indexes = _.range(questions.length),
+		// randomly select the first index of questions to display
+		currentIndex = _.sample(indexes);
 
-	$scope.current = $scope.questions[$scope.currentIndex];
-		
+	$scope.current = questions[currentIndex];		
 	$scope.selectAnswer = selectAnswer;
 
 	function changeQuestion() {
-		$scope.indexes = _.without($scope.indexes, $scope.currentIndex);
-		$scope.currentIndex = _.sample($scope.indexes);
-		$scope.current = $scope.questions[$scope.currentIndex];
+		// removes the current (already old) question index from the indexes array
+		indexes = _.without(indexes, currentIndex);
+	
+		if (indexes.length) {
+			// gets a new index again from the indexes array
+			currentIndex = _.sample(indexes);
+			// changes the current question to display with the new question index
+			$scope.current = questions[currentIndex];
+		} else {
+			alert('Completó el quiz');
+		}
 	}
 
 	function selectAnswer () {
+
+		// change to the next question
 		changeQuestion();
 	}
   });
