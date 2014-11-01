@@ -8,7 +8,7 @@
  * Controller of the quizApp
  */
 angular.module('quizApp')
-  .controller('QuestionCtrl', function ($scope) {
+  .controller('QuestionCtrl', function ($scope, $state, correctAnswers) {
   	// questions (this will come from an external json)
     var questions = [{
 		'content': '¿Cómo se define un módulo en angular?',
@@ -17,7 +17,8 @@ angular.module('quizApp')
 			'angular.module("nombreModulo")',
 			'angular("nombreModulo")'
 		],
-		'correctAnswer': 0
+		'correctAnswer': 0,
+		'score': 10 //easy
 	},
 	{
 		'content': 'última versión de html',
@@ -26,7 +27,8 @@ angular.module('quizApp')
 			'3',
 			'5'
 		],
-		'correctAnswer': 2
+		'correctAnswer': 2,
+		'score': 10 //easy
 	},
 	{
 		'content': 'libreria javascript',
@@ -35,16 +37,19 @@ angular.module('quizApp')
 			'jquery',
 			'cachata'
 		],
-		'correctAnswer': 1
+		'correctAnswer': 1,
+		'score': 10 //easy
 	}];
 
 	// put all the indexes of the questions array in a separated array
 	var indexes = _.range(questions.length),
 		// randomly select the first index of questions to display
-		currentIndex = _.sample(indexes);
+		currentIndex = _.sample(indexes),
+		fullCorrectAnswers = [];
 
 	$scope.current = questions[currentIndex];		
 	$scope.selectAnswer = selectAnswer;
+
 
 	function changeQuestion() {
 		// removes the current (already old) question index from the indexes array
@@ -56,12 +61,19 @@ angular.module('quizApp')
 			// changes the current question to display with the new question index
 			$scope.current = questions[currentIndex];
 		} else {
-			alert('Completó el quiz');
+			correctAnswers.save(fullCorrectAnswers.length);
+			$state.go('completed');
 		}
 	}
 
-	function selectAnswer () {
+	function validateAnswer (index) {
+		if (index == $scope.current.correctAnswer) {
+			fullCorrectAnswers.push(currentIndex);
+		}
+	}
 
+	function selectAnswer (index) {
+		validateAnswer(index);
 		// change to the next question
 		changeQuestion();
 	}

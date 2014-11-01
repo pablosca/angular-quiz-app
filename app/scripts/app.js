@@ -19,6 +19,7 @@ angular
     'ui.router'
   ])
   .config(function ($stateProvider, $routeProvider) {
+    
     $routeProvider.otherwise('/');
 
     $stateProvider
@@ -41,6 +42,18 @@ angular
         url: '/question',
         templateUrl: 'views/question.html',
         controller: 'QuestionCtrl'
+      })
+      .state('completed', {
+        url: '/completed',
+        // url: '/completed/:correct',
+        // resolve: {
+        //   correct: ['$stateParams', function($stateParams) {
+        //       return $stateParams.correct;
+        //     }
+        //   ]
+        // },
+        templateUrl: 'views/completed.html',
+        controller: 'CompletedCtrl'
       });
       // .state('about', {
       //   url: '/about',

@@ -1,13 +1,13 @@
 <div class="panel panel-default">
-  <!-- Default panel contents -->
-  <div class="panel-heading">
-    {{current.content}}
-  </div>
+    <!-- Default panel contents -->
+    <div class="panel-heading">
+        {{current.content}}
+    </div>
 
-  <!-- List group -->
-  <ul class="list-group">
-    <li ng-click="selectAnswer(index)" class="list-group-item" ng-repeat="(index, answer) in current.answers">
-      {{answer}}
-    </li>
-  </ul>
+    <!-- List group -->
+    <ul class="list-group">
+        <li ng-click="selectAnswer(index)" class="list-group-item" ng-repeat="(index, answer) in current.answers">
+            {{answer}}
+        </li>
+    </ul>
 </div>
