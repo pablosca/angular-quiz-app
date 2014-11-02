@@ -8,7 +8,7 @@
  * Factory in the quizApp.
  */
 angular.module('quizApp')
-    .factory('questions', function() {
+    .factory('Questions', function() {
         // Service logic
         var questions = [{
             'content': '¿Cómo se define un módulo en angular?',

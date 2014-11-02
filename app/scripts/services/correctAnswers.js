@@ -8,7 +8,7 @@
  * Service in the quizApp.
  */
 angular.module('quizApp')
-	.factory('correctAnswers', function correctAnswers() {
+	.factory('CorrectAnswers', function () {
 		var correctAnswers;
 
 		return {
@@ -17,9 +17,6 @@ angular.module('quizApp')
 			},
 			save: function(correct) {
 				correctAnswers = correct;
-			},
-			start: function() {
-				correctAnswers = 0;
 			}
 		};
 	});

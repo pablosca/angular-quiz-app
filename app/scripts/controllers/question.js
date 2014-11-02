@@ -8,12 +8,10 @@
  * Controller of the quizApp
  */
 angular.module('quizApp')
-  .controller('QuestionCtrl', function ($scope, $state, correctAnswers, questions) {
+  .controller('QuestionCtrl', function ($scope, $state, CorrectAnswers, Questions) {
   	
-    var questions = questions.get(); // questions (this will come from an external json)
-
-	
-	var indexes = _.range(questions.length), // put all the indexes of the questions array in a separated array
+    var questions = Questions.get(), // questions (this will come from an external json)
+		indexes = _.range(questions.length), // put all the indexes of the questions array in a separated array
 		currentIndex = _.sample(indexes), // randomly select the first index of questions to display
 		fullCorrectAnswers = [];
 
@@ -29,7 +27,7 @@ angular.module('quizApp')
 			currentIndex = _.sample(indexes); // gets a new index again from the indexes array
 			$scope.current = questions[currentIndex]; // changes the current question to display with the new question index
 		} else {
-			correctAnswers.save(fullCorrectAnswers.length);
+			CorrectAnswers.save(fullCorrectAnswers.length);
 			$state.go('completed');
 		}
 	}
