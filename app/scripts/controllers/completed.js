@@ -8,6 +8,10 @@
  * Controller of the quizApp
  */
 angular.module('quizApp')
-  .controller('CompletedCtrl', function ($scope, CorrectAnswers) {
-    $scope.correct = CorrectAnswers.get();
-  });
+    .controller('CompletedCtrl', [
+        '$scope',
+        'CorrectAnswers',
+        function($scope, CorrectAnswers) {
+            $scope.correct = CorrectAnswers.get().length;
+        }
+    ]);

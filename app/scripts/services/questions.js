@@ -18,7 +18,8 @@ angular.module('quizApp')
                 'angular("nombreModulo")'
             ],
             'correctAnswer': 0,
-            'score': 10
+            'score': 10,
+            'level': 0
         }, {
             'content': 'última versión de html',
             'answers': [
@@ -27,7 +28,8 @@ angular.module('quizApp')
                 '5'
             ],
             'correctAnswer': 2,
-            'score': 10
+            'score': 10,
+            'level': 0
         }, {
             'content': 'libreria javascript',
             'answers': [
@@ -36,13 +38,13 @@ angular.module('quizApp')
                 'cachata'
             ],
             'correctAnswer': 1,
-            'score': 10
+            'score': 10,
+            'level': 1
         }];
 
-        // Public API here
         return {
-            get: function() {
-                return questions;
+            get: function(quantity) {
+                return quantity ? _.first(questions, quantity) : questions;
             }
         };
     });

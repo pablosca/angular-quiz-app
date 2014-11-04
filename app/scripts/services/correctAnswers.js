@@ -8,15 +8,15 @@
  * Service in the quizApp.
  */
 angular.module('quizApp')
-	.factory('CorrectAnswers', function () {
-		var correctAnswers;
+    .factory('CorrectAnswers', function() {
+        var correctAnswers;
 
-		return {
-			get: function() {
-				return correctAnswers;
-			},
-			save: function(correct) {
-				correctAnswers = correct;
-			}
-		};
-	});
+        return {
+            get: function() {
+                return correctAnswers;
+            },
+            save: function(correct) {
+                correctAnswers = correct;
+            }
+        };
+    });
