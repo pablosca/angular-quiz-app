@@ -18,6 +18,11 @@ angular
         'ngTouch',
         'ui.router'
     ])
+
+    .run(function($rootScope, $log) {
+        $rootScope.$log = $log;
+    })
+
     .config(function($stateProvider, $routeProvider) {
 
         $routeProvider.otherwise('/');

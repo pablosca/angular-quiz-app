@@ -22,8 +22,10 @@ angular.module('quizApp')
                 currentIndex = _.sample(indexes), // randomly select the first index of questions to display
                 fullCorrectAnswers = [];
 
+            $scope.indexes = indexes;
             $scope.current = questions[currentIndex];
             $scope.selectAnswer = selectAnswer;
+            $scope.currentQuestionStep = 0;
 
 
             function changeQuestion() {
@@ -33,6 +35,7 @@ angular.module('quizApp')
                 if (indexes.length) {
                     currentIndex = _.sample(indexes); // gets a new index again from the indexes array
                     $scope.current = questions[currentIndex]; // changes the current question to display with the new question index
+                    $scope.currentQuestionStep++;
                 } else {
                     CorrectAnswers.save(fullCorrectAnswers);
                     $state.go('completed');
@@ -50,4 +53,16 @@ angular.module('quizApp')
                 changeQuestion();
             }
         }
-    ]);
+    ])
+    
+    .directive('breadcrumb', [function () {
+        return {
+            restrict: 'E',
+            scope: {
+                activeClass: '@',
+                steps: '=',
+                currentStep: '='
+            },
+            templateUrl: 'views/breadcrumb.html'
+        };
+    }]);

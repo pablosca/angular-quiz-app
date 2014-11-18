@@ -11,7 +11,15 @@ angular.module('quizApp')
     .controller('CompletedCtrl', [
         '$scope',
         'CorrectAnswers',
-        function($scope, CorrectAnswers) {
-            $scope.correct = CorrectAnswers.get().length;
+        '$state',
+        function($scope, CorrectAnswers, $state) {
+            
+            var correctAnswers = CorrectAnswers.get();
+
+            if (correctAnswers) {
+	            $scope.correct = correctAnswers.length;
+            } else {
+            	$state.go('level');
+            }
         }
     ]);

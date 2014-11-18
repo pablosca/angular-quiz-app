@@ -40,6 +40,17 @@ angular.module('quizApp')
             'correctAnswer': 1,
             'score': 10,
             'level': 1
+        }, {
+            'content': 'Uruguay main city',
+            'answers': [
+                'Montevideo',
+                'Buenos Aires',
+                'Vladivostok',
+                'Dubai'
+            ],
+            'correctAnswer': 0,
+            'score': 10,
+            'level': 1
         }];
 
         return {

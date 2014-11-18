@@ -1,3 +1,4 @@
+<breadcrumb active-class="label label-default" steps="indexes" current-step="currentQuestionStep"></breadcrumb>
 <div class="panel panel-default">
     <!-- Default panel contents -->
     <div class="panel-heading">
@@ -6,7 +7,7 @@
 
     <!-- List group -->
     <ul class="list-group">
-        <li ng-click="selectAnswer(index)" class="list-group-item" ng-repeat="(index, answer) in current.answers">
+        <li ng-click="selectAnswer($index)" class="list-group-item" ng-repeat="answer in current.answers">
             {{answer}}
         </li>
     </ul>
