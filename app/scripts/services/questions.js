@@ -9,46 +9,57 @@
  */
 angular.module('quizApp')
     .factory('Questions', function() {
-        // Service logic
+        
+        // questions will come from server call
         var questions = [{
-            'content': '¿Cómo se define un módulo en angular?',
+            'content': 'How is an angular module defined?',
             'answers': [
-                'angular.module("nombreModulo", [])',
-                'angular.module("nombreModulo")',
-                'angular("nombreModulo")'
+                'angular.module("moduleName", [])',
+                'angular.module("moduleName")',
+                'angular("moduleName")'
             ],
             'correctAnswer': 0,
             'score': 10,
             'level': 0
         }, {
-            'content': 'última versión de html',
+            'content': 'Why is the project called "AngularJS"?',
             'answers': [
-                '4',
-                '3',
-                '5'
-            ],
-            'correctAnswer': 2,
-            'score': 10,
-            'level': 0
-        }, {
-            'content': 'libreria javascript',
-            'answers': [
-                'css3',
-                'jquery',
-                'cachata'
+                'Is the last name of its creator',
+                'Because HTML has Angular brackets',
+                'Is the name of the dog of its creator'
             ],
             'correctAnswer': 1,
             'score': 10,
+            'level': 0
+        }, {
+            'content': 'What is a scope in AngularJS?',
+            'answers': [
+                'Is an object that refers to the application model.',
+                'It is the glue between application controller and the view.',
+                'It is an execution context for expressions and arranged in hierarchical structure.',
+                'All of the above.'
+            ],
+            'correctAnswer': 3,
+            'score': 10,
             'level': 1
         }, {
-            'content': 'Uruguay main city',
+            'content': 'How many root scopes an Angular application have?',
             'answers': [
-                'Montevideo',
-                'Buenos Aires',
-                'Vladivostok',
-                'Dubai'
+                'Only one.',
+                'None.',
+                'All those created by the app developer.'
             ],
             'correctAnswer': 0,
+            'score': 10,
+            'level': 1
+        }, {
+            'content': 'What Angular built-in directive would you use to loop through a collection and list each item?',
+            'answers': [
+                'ngLoop',
+                'ngRepeat.',
+                'ngCollection'
+            ],
+            'correctAnswer': 1,
             'score': 10,
             'level': 1
         }];

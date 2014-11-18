@@ -1,2 +1,14 @@
-<p>You replied {{correct}} correct answers</p>
-<button ui-sref="level">Start another quiz</button>
+<div class="progress">
+  <div class="progress-bar progress-bar-{{result.status.class}}" role="progressbar" aria-valuenow="{{result.percent}}" aria-valuemin="0" aria-valuemax="100" style="width: {{result.percent}}%">
+    <span class="sr-only">{{result.percent}}% Correct</span>
+  </div>
+</div>
+
+<div class="alert alert-{{result.status.class}}">
+	{{result.correct}} correct answers of {{result.total}} questions.
+	<p>{{result.status.text}}</p>
+</div>
+
+<button ui-sref="level" class="btn btn-primary pull-right">
+	Start another quiz
+</button>

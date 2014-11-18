@@ -16,41 +16,50 @@ angular.module('quizApp')
         'QuizConfig',
         function($scope, $state, CorrectAnswers, Questions, QuizConfig) {
 
+            // private variables
             var quizConfig = QuizConfig.get(),
                 questions = Questions.get(quizConfig.questionsQuantity), // questions (this will come from an external json)
                 indexes = _.range(questions.length), // put all the indexes of the questions array in a separated array
-                currentIndex = _.sample(indexes), // randomly select the first index of questions to display
+                currentQuestionId = _.sample(indexes), // randomly select the first index of questions to display
                 fullCorrectAnswers = [];
 
+            // variables in scope
             $scope.indexes = indexes;
-            $scope.current = questions[currentIndex];
-            $scope.selectAnswer = selectAnswer;
+            $scope.current = questions[currentQuestionId];
             $scope.currentQuestionStep = 0;
+            $scope.selectedAnswer = null;
+            
+            // functions in scope
+            $scope.selectAnswer = selectAnswer;
+            $scope.nextQuestion = nextQuestion;
 
 
-            function changeQuestion() {
-
-                indexes = _.without(indexes, currentIndex); // removes the current (already old) question index from the indexes array
+            // changes to next questions
+            function nextQuestion() {
+                validateAnswer();
+                indexes = _.without(indexes, currentQuestionId); // removes the current (already old) question index from the indexes array
 
                 if (indexes.length) {
-                    currentIndex = _.sample(indexes); // gets a new index again from the indexes array
-                    $scope.current = questions[currentIndex]; // changes the current question to display with the new question index
+                    currentQuestionId = _.sample(indexes); // gets a new index again from the indexes array
+                    $scope.current = questions[currentQuestionId]; // changes the current question to display with the new question index
                     $scope.currentQuestionStep++;
+                    $scope.selectedAnswer = null;
                 } else {
-                    CorrectAnswers.save(fullCorrectAnswers);
+                    CorrectAnswers.save(fullCorrectAnswers, questions.length);
                     $state.go('completed');
                 }
             }
 
-            function validateAnswer(index) {
-                if (index == $scope.current.correctAnswer) {
-                    fullCorrectAnswers.push(currentIndex);
+            // if correct, push the question id to fullCorrectAnswers
+            function validateAnswer() {    
+                if ($scope.selectedAnswer == $scope.current.correctAnswer) {
+                    fullCorrectAnswers.push(currentQuestionId);
                 }
             }
 
+            // changes selectedAnswer to have the value of the selected answer
             function selectAnswer(index) {
-                validateAnswer(index);
-                changeQuestion();
+                $scope.selectedAnswer = index;
             }
         }
     ])

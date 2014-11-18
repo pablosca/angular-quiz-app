@@ -10,7 +10,7 @@
 angular.module('quizApp')
     .factory('QuizConfig', function() {
         var quizConfig = {
-            questionsQuantity: 10,
+            questionsQuantity: 5,
             level: 'easy'
         };
 

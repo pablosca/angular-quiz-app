@@ -6,7 +6,7 @@ angular.module('quizApp')
         '$state',
         'QuizConfig',
         function($scope, $state, QuizConfig) {
-            $scope.quizLength = [1, 2, 20, 50];
+            $scope.quizLength = [2, 4, 5];
             $scope.setQuestionsLength = setQuestionsLength;
 
             function setQuestionsLength(length) {

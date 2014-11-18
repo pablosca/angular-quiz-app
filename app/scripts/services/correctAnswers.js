@@ -9,14 +9,15 @@
  */
 angular.module('quizApp')
     .factory('CorrectAnswers', function() {
-        var correctAnswers;
+        var answers = {};
 
         return {
             get: function() {
-                return correctAnswers;
+                return answers;
             },
-            save: function(correct) {
-                correctAnswers = correct;
+            save: function(correct, total) {
+                answers.correct = correct;
+                answers.totalQuestions = total;
             }
         };
     });
