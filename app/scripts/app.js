@@ -23,7 +23,7 @@ angular
         $rootScope.$log = $log;
     })
 
-    .config(function($stateProvider, $routeProvider) {
+    .config(function($stateProvider, $routeProvider, $locationProvider) {
 
         $routeProvider.otherwise('/');
 
@@ -31,17 +31,20 @@ angular
             .state('main', {
                 url: '/',
                 templateUrl: 'views/main.html'
-                // controller: 'MainCtrl'
             })
-            .state('questionsLength', {
-                url: '/questions-length',
-                templateUrl: 'views/questions-length.html',
-                controller: 'QuestionsLengthCtrl'
+            .state('options', {
+                url: '/options',
+                templateUrl: 'views/options.html'
             })
             .state('level', {
                 url: '/level',
                 templateUrl: 'views/level.html',
                 controller: 'LevelCtrl'
+            })
+            .state('questionsLength', {
+                url: '/questions-length',
+                templateUrl: 'views/questions-length.html',
+                controller: 'QuestionsLengthCtrl'
             })
             .state('question', {
                 url: '/question',
@@ -60,9 +63,10 @@ angular
                 templateUrl: 'views/completed.html',
                 controller: 'CompletedCtrl'
             });
-        // .state('about', {
-        //   url: '/about',
-        //   templateUrl: 'views/about.html',
-        //   controller: 'AboutCtrl'
-        // });
+
+            $routeProvider.otherwise('/');
+            
+            // html5Mode on, so it works without hash
+            $locationProvider.html5Mode(true);
+
     });
