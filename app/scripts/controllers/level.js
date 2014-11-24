@@ -5,12 +5,9 @@ angular.module('quizApp')
         '$scope',
         '$state',
         'QuizConfig',
-        function($scope, $state, QuizConfig) {
-            $scope.levels = [
-                {'id': 0, 'name': 'Newbie'},
-                {'id': 1, 'name': 'Intermediate'},
-                {'id': 2, 'name': 'Pro'}
-            ];
+        'LEVELS',
+        function($scope, $state, QuizConfig, LEVELS) {
+            $scope.levels = LEVELS;
             $scope.setLevel = setLevel;
 
             function setLevel(level) {

@@ -18,7 +18,29 @@ angular
         'ngTouch',
         'ui.router'
     ])
-
+    .constant('RESULTS_MESSAGES', {
+        success: {
+            'class': 'success',
+            text: 'Flawless!'
+        },
+        good: {
+            'class': 'info',
+            text: 'Good work!'
+        },
+        regular: {
+            'class': 'warning',
+            text: 'Try a lower level.'
+        },
+        bad: {
+            'class': 'danger',
+            text: 'Are you ok?'
+        }
+    })
+    .constant('LEVELS', [
+        {'id': 0, 'name': 'Newbie'},
+        {'id': 1, 'name': 'Intermediate'},
+        {'id': 2, 'name': 'Pro'}
+    ])
     .run([
         '$rootScope',
         '$log',

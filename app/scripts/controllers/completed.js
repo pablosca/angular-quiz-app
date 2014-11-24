@@ -12,33 +12,15 @@ angular.module('quizApp')
         '$scope',
         'CorrectAnswers',
         '$state',
-        function($scope, CorrectAnswers, $state) {
+        'RESULTS_MESSAGES',
+        function($scope, CorrectAnswers, $state, RESULTS_MESSAGES) {
             
             var answers = CorrectAnswers.get();
 
             if (answers.correct) {
                 var correct = answers.correct.length,
-                    total = answers.totalQuestions;
-                
-                // TODO: messages should go in a service or config?
-                var messages = {
-                    success: {
-                        'class': 'success',
-                        text: 'Flawless!'
-                    },
-                    good: {
-                        'class': 'info',
-                        text: 'Good work!'
-                    },
-                    regular: {
-                        'class': 'warning',
-                        text: 'Try a lower level.'
-                    },
-                    bad: {
-                        'class': 'danger',
-                        text: 'Are you ok?'
-                    }
-                }
+                    total = answers.totalQuestions,
+                    messages = RESULTS_MESSAGES;
 
                 $scope.result = {
                     correct: correct,
